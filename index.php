@@ -7,7 +7,7 @@
     <script src="./js/index.js"></script>
 </head>
 <body>
-    <p id="tasks">
-    </p>
+    <div id="mainDivTaks" class="tasks">
+    </div>
 </body>
 </html>
