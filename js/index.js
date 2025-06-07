@@ -46,7 +46,6 @@ function colectAndUpdate(jsid) {
       .then(response => response.text())
       .then(data => {
         console.log("update...");
-        getAllTasks();
       })
       .catch(error => {
         alert("Algo deu errado...");
