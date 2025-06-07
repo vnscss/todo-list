@@ -53,7 +53,7 @@ function colectAndUpdate(jsid) {
       });
     };
 
-    debounceMap.set(jsid, debounce(curl, 5000));
+    debounceMap.set(jsid, debounce(curl, 2000));
   }
 
   // Usa o debounce correspondente ao jsid
