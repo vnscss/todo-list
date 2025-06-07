@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS tarefas (
     name TEXT NOT NULL,
     descricao TEXT,
     done BOOLEAN NOT NULL CHECK (done IN (0,1)) DEFAULT 0,
-    data INTEGER,
+    data TEXT,
     user TEXT NOT NULL DEFAULT ''
 );
 
