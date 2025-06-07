@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $myPDO = new PDO('sqlite:./data.db');
         $myPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $myPDO->prepare("SELECT id ,name, descricao, done, data FROM tarefas WHERE user = :userHash");
+        $stmt = $myPDO->prepare("SELECT id ,name, descricao, done, data FROM tarefas WHERE user = :userHash  AND done = 0");
         $stmt->bindParam(':userHash', $clientHash, PDO::PARAM_STR);
         $stmt->execute();
 
