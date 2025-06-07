@@ -202,7 +202,35 @@ const callback = function(mutationsList, observer) {
 
   targetNode.addEventListener('input', (event) => {
     if (event.target.tagName === 'INPUT') {
-        if (event.target.classList.contains('taskCheck')) return;
+        if (event.target.classList.contains('taskCheck')){
+            
+                let id = JSON.stringify({
+                    id: event.target.closest('#singleTask').getAttribute('jsid')
+                });
+
+                const formData = new URLSearchParams();
+                formData.append('a', 4);
+                formData.append('b', localStorage.getItem("hash"));
+                formData.append('c', id);
+
+                    fetch(`${baseUrl}/crud.php`, {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: formData.toString()
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log("marcando como done...");
+                    getAllTasks();
+                })
+                .catch(error => {
+                    alert("Algo deu errado...");
+                    window.location.reload();
+                });
+                return
+        };
         colectAndUpdate(event.target.closest('#singleTask').getAttribute('jsid'));
     }
   });
