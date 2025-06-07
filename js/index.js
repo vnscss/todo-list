@@ -113,6 +113,7 @@ else{
 }
 
 
+function getAllTasks(){
 let getAllTasksObjt = new URLSearchParams();
 getAllTasksObjt.append('a', localStorage.getItem("hash"));
 
@@ -125,6 +126,8 @@ body: getAllTasksObjt.toString()
 })
 .then(response => response.text())
 .then(data => {
+    let mainDivTaks = document.getElementById("mainDivTaks");
+    mainDivTaks.innerHTML = ""
     let arr = JSON.parse(data);
     arr.forEach(element => {
         let mainDivTaks = document.getElementById("mainDivTaks");
@@ -157,6 +160,9 @@ body: getAllTasksObjt.toString()
     window.location.reload();
 });
 
+}
+
+getAllTasks();
 
 function listen(){
   const targetNode = document.getElementById('mainDivTaks');
@@ -200,6 +206,64 @@ const callback = function(mutationsList, observer) {
         colectAndUpdate(event.target.closest('#singleTask').getAttribute('jsid'));
     }
   });
+}
+
+
+
+function addTask(){
+    let addTaskDiv = document.getElementById("addTask");
+
+    let name = addTaskDiv.querySelector(".taskH1").innerHTML
+    let descricao = addTaskDiv.querySelector(".taskDesc").innerHTML
+    let data = addTaskDiv.querySelector(".taskDate").value
+
+
+    if( !(data === "") && !(name === "") && !(descricao === "")){
+
+        let task = JSON.stringify({
+        name: name,
+        descricao: descricao,
+        data: data
+        });
+
+
+        let formData = new URLSearchParams();
+        formData.append('a', 1);
+        formData.append('b', localStorage.getItem("hash"));
+        formData.append('c', task);
+
+        fetch(`${baseUrl}/crud.php`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log("create...");
+        })
+        .catch(error => {
+            alert("Algo deu errado...");
+            window.location.reload();
+        });
+
+        getAllTasks();
+        addTaskDiv.querySelector(".taskH1").innerHTML = ""
+        addTaskDiv.querySelector(".taskDesc").innerHTML = ""
+        addTaskDiv.querySelector(".taskDate").value = ""
+
+    }
+    else{
+        alert("Preencha todos os dados")
+    }
+}
+
+function cancelarTask(){
+    let addTaskDiv = document.getElementById("addTask");
+    addTaskDiv.querySelector(".taskH1").innerHTML = ""
+    addTaskDiv.querySelector(".taskDesc").innerHTML = ""
+    addTaskDiv.querySelector(".taskDate").value = ""
 }
 
 
