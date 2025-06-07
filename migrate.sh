@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS tarefas (
     data INTEGER,
     user TEXT NOT NULL DEFAULT ''
 );
-EOF
 
+CREATE TABLE IF NOT EXISTS hashes (
+    hash TEXT PRIMARY KEY
+);
+EOF
 echo "Migration completa: tabela 'tarefas' criada e dados mock inseridos."

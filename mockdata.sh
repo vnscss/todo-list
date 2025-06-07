@@ -3,7 +3,7 @@
 # Caminho para o arquivo do banco SQLite
 DB_PATH="./data.db"
 
-# Criar a tabela 'tarefas' se não existir
+# Criar as tabelas se não existirem
 sqlite3 "$DB_PATH" <<EOF
 CREATE TABLE IF NOT EXISTS tarefas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,13 +13,26 @@ CREATE TABLE IF NOT EXISTS tarefas (
     data INTEGER,
     user TEXT NOT NULL DEFAULT ''
 );
+
+CREATE TABLE IF NOT EXISTS hashes (
+    hash TEXT PRIMARY KEY
+);
 EOF
 
-# Inserir dados mock na tabela 'tarefas'
+# Definir o hash válido que será usado nas 3 tasks e inserido na tabela hashes
+HASH_VALIDO='a3f5c1d2e4b67890abcdef1234567890abcdef1234567890abcdef1234567890'
+
+# Inserir o hash válido na tabela hashes (ignora se já existir)
+sqlite3 "$DB_PATH" <<EOF
+INSERT OR IGNORE INTO hashes (hash) VALUES ('$HASH_VALIDO');
+EOF
+
+# Inserir 3 tasks com o mesmo hash válido no campo user
 sqlite3 "$DB_PATH" <<EOF
 INSERT INTO tarefas (name, descricao, done, data, user) VALUES 
-('Comprar leite', 'Comprar leite no supermercado até às 18h', 0, strftime('%s','now'), 'a3f5c1d2e4b67890abcdef1234567890abcdef1234567890abcdef1234567890'),
-('Enviar relatório', 'Enviar relatório mensal para o gerente', 1, strftime('%s','now','-1 day'), 'b4f6d2e3f7c89012abcdef3456789012abcdef3456789012abcdef3456789012'),
-('Pagar contas', 'Pagar contas de água e luz antes do vencimento', 0, strftime('%s','now','+2 days'), 'c5a7e3f8d9b01234abcdef5678901234abcdef5678901234abcdef5678901234');
+('Comprar leite', 'Comprar leite no supermercado até às 18h', 0, strftime('%s','now'), '$HASH_VALIDO'),
+('Enviar relatório', 'Enviar relatório mensal para o gerente', 1, strftime('%s','now','-1 day'), '$HASH_VALIDO'),
+('Pagar contas', 'Pagar contas de água e luz antes do vencimento', 0, strftime('%s','now','+2 days'), '$HASH_VALIDO');
 EOF
 
+echo "Mock inserido: 3 tarefas com o mesmo hash válido."
