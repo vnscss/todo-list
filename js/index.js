@@ -156,13 +156,62 @@ body: getAllTasksObjt.toString()
     listen();
 })
 .catch(error => {
-    alert(error)
-    window.location.reload();
+      alert(error)
+      window.location.reload();
+});
+}
+
+
+
+
+function getDoneTasks(){
+let getAllTasksObjt = new URLSearchParams();
+getAllTasksObjt.append('a', localStorage.getItem("hash"));
+
+fetch(`${baseUrl}/doneTasks.php`, {
+method: 'POST',
+headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+},
+body: getAllTasksObjt.toString()
+})
+.then(response => response.text())
+.then(data => {
+    let mainDivTaks = document.getElementById("mainDivTaks");
+    mainDivTaks.innerHTML = ""
+    let arr = JSON.parse(data);
+    arr.forEach(element => {
+        let mainDivTaks = document.getElementById("mainDivTaks");
+        let checkbox ;
+
+        if(element.done == 1){
+            checkbox = `<input class="taskCheck" type="checkbox" name="" id="" checked disabled>`;
+        }
+        else{
+            checkbox = `<input class="taskCheck" type="checkbox" name="" id="" disabled>`;
+        }
+        
+        let htmlString = `
+        <div id="singleTask" jsid="${element.id}" class="taksContainer">
+
+            <h1 contenteditable="false" class="taskH1">${element.name}</h1>
+            <div class="taskDesc" contenteditable="false">${element.descricao}</div>
+            ${checkbox}
+            <input class="taskDate" type="datetime-local" name="" id="" value="${element.data}" disabled>
+
+        </div>`
+
+        mainDivTaks.innerHTML += htmlString;
+    });
+
+    listen();
+})
+.catch(error => {
+      alert(error)
+      window.location.reload();
 });
 
 }
-
-getAllTasks();
 
 function listen(){
   const targetNode = document.getElementById('mainDivTaks');
