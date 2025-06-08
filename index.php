@@ -5,28 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo PHP</title>
     <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./style/styles.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 </head>
 <body>
-    <div id="mainDivTaks" class="tasks">
-    </div>
+  <menu>
+      <button 
+        hx-get="/htmx/index.php" 
+        hx-target="main" 
+        hx-swap="innerHTML"
+        hx-trigger="load,click"
+        >
+        Tarefas
+      </button>
 
-    <div id="addTask" class="taksContainer">
+      <button 
+        hx-get="/htmx/doneTasks.php" 
+        hx-target="main" 
+        hx-swap="innerHTML"
+        >
+        Lixeira
+      </button>
+  </menu>
 
-        <h1 contenteditable="true" class="taskH1" data-placeholder="Nome da task"></h1>
-        <div class="taskDesc" contenteditable="true" data-placeholder="Descrição"></div>
-        <input class="taskDate" type="datetime-local" name="" id="" >
+  <main>
 
-        <button onclick="cancelarTask()">Cancelar</button>
-        <button onclick="addTask()">Adicionar Tarefa</button>
-    </div>
-
-    <style>
-  [contenteditable]:empty:before {
-    content: attr(data-placeholder);
-    color: #aaa;
-    pointer-events: none;
-  }
-
-</style>
+  </main>
 </body>
 </html>
