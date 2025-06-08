@@ -7,6 +7,10 @@ pointer-events: none;
 :root {
   --main: #303030;
   --second: #1d1d1d;
+  --third: #5c5c5c;
+
+  --mainColoridinho: #4b136b;
+  --mainColoridinhoDois:#8a00da;
 }
 body{
     padding: 0;
@@ -20,13 +24,71 @@ body{
 body *{
     padding: 0;
     margin: 0;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
 }
 
 menu{
     background-color: var(--main);
     height: 100vh;
-    width: 30vw;
+    width: 15vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    gap: 0.4vh;
 }
+
+menu p{
+    margin: 0;
+}
+
+.menugap{
+    height: 4vh;
+}
+
+menu button{
+    border: none;
+    background: none;
+    width: 93%;
+    height: 3vh;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+}
+
+menu button.clicked:hover{
+    background-color: var(--mainColoridinho);
+}
+
+menu button:hover{
+    background-color: var(--third);
+}
+
+.clicked{
+    background-color: var(--mainColoridinho);
+}
+
+menu button i{
+    font-size: 30px;
+    padding-left: 5%;
+}
+
+menu button p{
+    font-size: 17px;
+    padding-left: 2%;
+
+    font-weight: bold;
+}
+
 
 main{
     background-color: var(--second);
@@ -47,5 +109,57 @@ main{
 #singleTask{
     border-top: 0.5px solid #ffffff15;
     border-bottom: 1px solid #ffffff15;
-    margin: 5% 0 5% 0;
+    margin: 2% 0 2% 0;
+
+    padding: 2%;
+}
+
+input[type="datetime-local"] {
+border: none;
+color: var(--mainColoridinhoDois);
+border-radius: 8px;
+background: none;
+outline: none;
+}
+
+
+input[type="checkbox"]{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #555;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 100%;
+}
+
+input[type="checkbox"]:hover{
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>');
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--mainColoridinhoDois);
+  border-color: var(--mainColoridinho);
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>');
+}
+
+
+#addTask{
+    border: 2px dashed #ffffff15;
+    border-radius: 5px;
+    padding: 2%;
+}
+
+.taskH1:focus , .taskDesc:focus {
+    pointer-events: none;
+    outline: none;
+    user-select: none;
+}
+
+.doneTasks h1{
+    text-decoration: line-through;
+    color: #ffffff15;
 }

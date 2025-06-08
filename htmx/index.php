@@ -7,8 +7,8 @@
     <div class="taskDesc" contenteditable="true" data-placeholder="Descrição"></div>
     <input class="taskDate" type="datetime-local" name="" id="" >
 
-    <button onclick="cancelarTask()">Cancelar</button>
-    <button onclick="addTask()">Adicionar Tarefa</button>
+    <button onclick="cancelarTask()" class="btn btn-danger">Cancelar</button>
+    <button onclick="addTask()" class="btn" style="background-color: var(--mainColoridinho); color: white;">Adicionar Tarefa</button>
 </div>
 
 

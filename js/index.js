@@ -134,10 +134,10 @@ body: getAllTasksObjt.toString()
         let checkbox ;
 
         if(element.done == 1){
-            checkbox = `<input class="taskCheck" type="checkbox" name="" id="" checked>`;
+            checkbox = `<input onchange="playSound()" class="taskCheck" type="checkbox" name="" id="" checked>`;
         }
         else{
-            checkbox = `<input class="taskCheck" type="checkbox" name="" id="">`;
+            checkbox = `<input onchange="playSound()" class="taskCheck" type="checkbox" name="" id="">`;
         }
         
         let htmlString = `
@@ -344,3 +344,17 @@ function cancelarTask(){
 }
 
 
+function styleClick(button){
+  buttons = document.querySelectorAll("menu button")
+
+  buttons.forEach(element => {
+    element.classList.remove("clicked");
+  });
+
+  button.classList.add("clicked")
+}
+
+function playSound() {
+  const audio = new Audio('audio/bubble.mp3');
+  audio.play();
+}

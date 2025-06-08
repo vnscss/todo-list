@@ -1,4 +1,4 @@
-<div id="mainDivTaks" class="tasks">
+<div id="mainDivTaks" class="doneTasks">
 </div>
 <script>
     getDoneTasks();
