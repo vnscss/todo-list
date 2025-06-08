@@ -109,7 +109,6 @@ main{
 #singleTask{
     border-top: 0.5px solid #ffffff15;
     border-bottom: 1px solid #ffffff15;
-    margin: 2% 0 2% 0;
 
     padding: 2%;
 }
@@ -150,6 +149,7 @@ input[type="checkbox"]:checked {
 #addTask{
     border: 2px dashed #ffffff15;
     border-radius: 5px;
+    margin-top: 2%;
     padding: 2%;
 }
 
