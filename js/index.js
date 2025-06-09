@@ -358,3 +358,26 @@ function playSound() {
   const audio = new Audio('audio/bubble.mp3');
   audio.play();
 }
+
+function getName(){
+  let nameDiv = document.querySelector(".nameDiv");
+  let input = nameDiv.querySelector("input");
+
+  if(!(localStorage.getItem("name") == null )){
+    document.querySelector("user").innerHTML  =   localStorage.getItem("name");
+  }
+  else{
+    localStorage.setItem("name" , input.value);
+    document.querySelector("user").innerHTML  =   localStorage.getItem("name");
+  }
+
+  nameDiv.style.display = "none";
+}
+
+
+window.addEventListener('load', function () {
+    if(!(localStorage.getItem("name") == null )){
+    document.querySelector("user").innerHTML  =   localStorage.getItem("name");
+    document.querySelector(".nameDiv").style.display = "none";
+  }
+});

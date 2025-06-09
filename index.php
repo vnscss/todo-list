@@ -23,9 +23,17 @@
     </style>
 </head>
 <body>
+  <div class="nameDiv">
+    <input type="text" placeholder="Qual seu nome?">
+    <button onclick="getName()" class="btn" style="background-color: var(--mainColoridinho); color: white;">Confirmar</button>
+  </div>
   <menu>
+      <user>
+
+      </user>
       <div class="menugap"></div>
       <button 
+        class="clicked"
         hx-get="/htmx/index.php" 
         hx-target="main" 
         hx-swap="innerHTML"
