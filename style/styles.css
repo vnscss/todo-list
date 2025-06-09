@@ -125,8 +125,8 @@ outline: none;
 input[type="checkbox"]{
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     border: 2px solid #555;
     border-radius: 6px;
     outline: none;
@@ -162,4 +162,31 @@ input[type="checkbox"]:checked {
 .doneTasks h1{
     text-decoration: line-through;
     color: #ffffff15;
+}
+
+
+#singleTask {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 4px 10px;
+  align-items: center;
+}
+
+.taskCheck {
+  grid-row: 1 / span 3;
+  grid-column: 1;
+  align-self: start;
+}
+
+.taskH1 {
+  grid-column: 2;
+}
+
+.taskDesc {
+  grid-column: 2;
+}
+
+.taskDate {
+  grid-column: 2;
 }
